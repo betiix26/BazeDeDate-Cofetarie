@@ -271,6 +271,7 @@ insert into Factura values (700, 7, 9, '15/03/2021');
 insert into Factura values (372, 1, 10, '28/02/2021');
 insert into Factura values (110, 1, 11, '30/08/2021');
 delete from factura where idcofetarie = 11;
+update Factura set Data = '07/04/2021' where NrComanda = 201
 insert into Factura values (209, 9, 8, '30/08/2021');
 insert into Factura values (210, 4, 8, '30/08/2021');
 insert into Factura values (222, 5, 8, '30/08/2021');
@@ -525,4 +526,55 @@ SELECT a.idangajat, a.nume, c.idcofetarie
 FROM angajati a full outer join cofetarie c on a.idcofetarie = c.idcofetarie
 order by idcofetarie
 
---liniile cu nume duplicat sunt grupate sub acel
+--liniile cu nume duplicat sunt grupate sub acelasi nume
+--si salariul lor corespunzator este suma salariului randurilor duplicate
+select nume, sum(salariu)
+from angajati
+group by nume
+
+--denumirea si gramajul fiecarui produs
+--grupat dupa idprodus
+SELECT idprodus, denumireprodus, gramaj 
+FROM produs
+Group BY idprodus
+order by idprodus
+
+--cauta angajatii care au suma salariilor < 2000 
+--si grupeaza dupa nume
+SELECT nume, SUM(salariu) FROM angajati
+GROUP BY nume  
+HAVING SUM(salariu)<2000;   
+
+--numaram cate produse avem din fiecare tip
+SELECT tipprodus, COUNT(*) AS total_products
+FROM produs
+WHERE tipprodus IS NOT NULL
+GROUP BY tipprodus
+ORDER BY tipprodus
+
+--cel mai mare salariu de la fiecare cofetarie
+SELECT distinct angajati.idcofetarie, MAX(salariu) AS highest_salary
+FROM angajati
+GROUP BY angajati.idcofetarie
+order by idcofetarie
+
+--vizualizam angajatii care au acelasi nume de familie
+--si numaram la fiecare
+CREATE VIEW nrangajati AS SELECT nume, Count(*) as nrangajati 
+                          FROM  angajati 
+                          group by nume
+                          order by nrangajati desc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
