@@ -1,0 +1,77 @@
+--salariul maxim, salariul minim, media si suma salariilor de la cofetaria 1 (Vivien)
+select sum(salariu), avg(salariu), max(salariu), min(salariu)
+from angajati inner join cofetarie on angajati.idcofetarie = cofetarie.idcofetarie
+where cofetarie.idcofetarie = 1
+
+--numaram comenzile facute de la fiecare cofetarie
+--si grupam dupa numele cofetariei
+SELECT cofetarie.nume, COUNT(factura.nrcomanda) AS nr_comenzi FROM factura
+LEFT JOIN cofetarie ON factura.idcofetarie = cofetarie.idcofetarie
+GROUP BY cofetarie.nume
+
+--id-ul si numele angajatilor care castiga mai mult decat salariul mediu
+select idangajat, nume, salariu
+from angajati
+where salariu> (SELECT AVG(salariu)
+                FROM angajati)
+Order by salariu
+
+--afiseaza numarul total de angajati
+SELECT COUNT(*) FROM angajati
+
+--salariu mediu al tuturor angajatiilor cu functie de pana acum 
+SELECT AVG(salariu),idfunctie
+FROM angajati
+GROUP BY idfunctie
+ORDER BY 1
+
+--salariul mediu doar daca acesta este mai mare decat 4000.
+SELECT avg(salariu)
+FROM angajati
+HAVING avg(salariu)>4000
+
+--suma salariilor pe functii in cadrul cofetariilor
+SELECT sum(salariu), idfunctie, idcofetarie
+FROM angajati
+GROUP BY idfunctie, idcofetarie
+ORDER BY 2 --se ordoneaza dupa coloana 2, adica dupa idfunctie
+
+--afisarea cofetariilor care au mai mai putin sau egal cu 2 angajati (inclusiv 0)
+select distinct cofetarie.nume
+from cofetarie
+where cofetarie.idcofetarie not in (select  distinct angajati.idcofetarie
+					            from angajati
+					            group by angajati.idcofetarie
+					            having count(*) >=2)
+
+--liniile cu nume duplicat sunt grupate sub acelasi nume
+--si salariul lor corespunzator este suma salariului randurilor duplicate
+select nume, sum(salariu)
+from angajati
+group by nume
+
+--denumirea si gramajul fiecarui produs
+--grupat dupa idprodus
+SELECT idprodus, denumireprodus, gramaj 
+FROM produs
+Group BY idprodus
+order by idprodus
+
+--cauta angajatii care au suma salariilor < 2000 
+--si grupeaza dupa nume
+SELECT nume, SUM(salariu) FROM angajati
+GROUP BY nume  
+HAVING SUM(salariu)<2000;   
+
+--numaram cate produse avem din fiecare tip
+SELECT tipprodus, COUNT(*) AS total_products
+FROM produs
+WHERE tipprodus IS NOT NULL
+GROUP BY tipprodus
+ORDER BY tipprodus
+
+--cel mai mare salariu de la fiecare cofetarie
+SELECT distinct angajati.idcofetarie, MAX(salariu) AS highest_salary
+FROM angajati
+GROUP BY angajati.idcofetarie
+order by idcofetarie

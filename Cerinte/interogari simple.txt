@@ -1,0 +1,23 @@
+--numele cofetariilor care au locatia in Craiova
+select Nume
+from cofetarie
+where locatie LIKE '%Craiova%'
+
+--numele si functia angajatilor care lucreaza la cofetaria 1
+select nume, prenume, idcofetarie
+from angajati
+where IdCofetarie = 1
+
+--numele si prenumele angajatilor care sunt patroni, din toate cofetariile
+select nume, prenume, denumirefunctie, idcofetarie
+from angajati, functie
+where functie.IdFunctie = 10 AND angajati.IdFunctie = 10
+order by idcofetarie asc
+
+--afisarea angajatilor care au salariul cuprins intre 1000-4000 lei
+--cu ordonare descrescatoare pentru salariu
+select Nume, Prenume, Salariu, IdCofetarie, IdFunctie
+from Angajati
+where (Salariu between 1000 and 4000)
+order by  Salariu desc
+

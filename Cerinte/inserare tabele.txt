@@ -1,0 +1,138 @@
+insert into Cofetarie values (1, 'Vivien','Craiova');
+insert into Cofetarie values (2, 'Amandina', 'Filiasi');
+insert into Cofetarie values (3, 'RIO', 'Craiova');
+insert into Cofetarie values (4, 'Arkadia', 'Brasov');
+insert into Cofetarie values (5, 'Sweet Escape', 'Sibiu');
+insert into Cofetarie values (6, 'Eugenia', 'Bucuresti');
+insert into Cofetarie values (7,'Bella', 'Arad');
+insert into Cofetarie values (8, 'Cakes', 'Timisoara');
+insert into Cofetarie values (9, 'Boromir', 'Podari');
+insert into Cofetarie values (10, 'Dessert Time', 'Constanta');
+
+insert into Angajati values (1, 'Popa', 'Robert', 5000, 1, 3);
+insert into Angajati values (2, 'Andrei', 'Marius', 8000, 6, 10);
+insert into Angajati values (3, 'Frunzulita', 'Mihnea', 4000, 1, 1);
+insert into Angajati values (4, 'Ionescu', 'Rica', 2500, 7, 2);
+insert into Angajati values (11, 'Crenguta', 'Mihai', 3000, 2, 4);
+insert into Angajati values (12, 'Dumitru', 'Daniel',4500, 1, 4);
+insert into Angajati values (13, 'Vanghelie', 'Marian',4300, 5, 4);
+insert into Angajati values (5, 'Patrascu', 'Niculina', 5000, 9, 5);
+insert into Angajati values (6, 'Petrescu', 'Liviu', 9000, 10, 6);
+insert into Angajati values (7, 'Hora', 'George', 1000, 3, 7);
+insert into Angajati values (8, 'Radu', 'Adrian', 4000, 4, 8);
+insert into Angajati values (9, 'Popa', 'Beti', 10000, 4, 9);
+insert into Angajati values (14, 'Popa', 'Ana', 10500, 3, 9);
+insert into Angajati values (10, 'Frunzulita', 'Ovi', 5000, 2, 10);
+insert into Angajati values (15, 'Veverita', 'Manole', 200000, 9, 10);
+insert into Angajati values (16, 'Pensula', 'Ramona', 5670, 5, 4);
+insert into Angajati values (17, 'Albastrea', 'Mirela', 7612, 7, 6);
+
+insert into Functie values (1, 'Ajutor de  cofetar', 'ajuta cofetarul');
+insert into Functie values (2, 'Om de serviciu', 'mentine curatenia');
+insert into Functie values (3, 'Cofetar', 'pregateste delicatesele');
+insert into Functie values (4, 'Livrator', 'livreaza comenzile');
+insert into Functie values (5, 'Chelner', 'aduce delicatesele la masa');
+insert into Functie values (6, 'Picolo', 'ajuta chelnerul');
+insert into Functie values (7, 'Manipulator de marfa', 'aduce produse/ingrediente');
+insert into Functie values (8, 'Casier', 'incaseaza banii');
+insert into Functie values (9, 'Manager', 'pregateste bonurile de masa');
+insert into Functie values (10, 'Patron', 'conduce afacerea');
+insert into Functie values (11, 'Contabil', 'tine evidenta produselor/banilor');
+
+
+insert into Produs values (1, 'Amandina', 'Prajituri',6, '100g', 1);
+insert into Produs values (11, 'Tort', 'Torturi',30, '300g', 1);
+insert into Produs values (12, 'Chec', 'Prajituri',12, '350g', 1);
+insert into Produs values (13, 'Pandispan cu visine', 'Prajituri',21, '102g', 1);
+insert into Produs values (2, 'Clatita', 'Deserturi',3, '30g', 1);
+insert into Produs values (3, 'Placinta', 'Foietaje',4.5, '75g', 2);
+insert into Produs values (19, 'Carpati', 'Prajituri',5.5, '70g', 2);
+insert into Produs values (15, 'Lava Cake', 'Prajituri',9, '100g', 2);
+insert into Produs values (16, 'Poale-n brau', 'Foietaje',3.5, '60g', 2);
+insert into Produs values (17, 'Briose', 'Prajituri',2.5, '85g', 2);
+insert into Produs values (18, 'Negrese', 'Prajituri',5, '30g', 2);
+insert into Produs values (4, 'Ecler', 'Prajituri',4.5, '75g', 2);
+insert into Produs values (5, 'Cozonac', 'Prajitura',9, '1.5kg', 3);
+insert into Produs values (6, 'Saratele', 'Foietaje',1.5, '15g', 3);
+insert into Produs values (7, 'Tort', 'Torturi',35, '5kg', 3);
+insert into Produs values (8, 'Strudel', 'Foietaje', 3, '50g', 1);
+insert into Produs values (9, 'Tiramisu', 'Prajituri', 12, '100g', 5);
+insert into Produs values (10, 'Fursecuri cu ovaz', 'Fursecuri', 4, '25g', 7);
+insert into Produs values (14, 'Rulada', 'Prajituri', 7, '76g', 1);
+insert into Produs (IdProdus, DenumireProdus, TipProdus, Gramaj, IdCofetarie) values (20,'Cornulete', 'Foietaje', '15g', 9)
+
+insert into Ingrediente values (1, 'Cacao', '15 bucati');
+insert into Ingrediente values (2, 'Dulceata de visine', '3 bucati');
+insert into Ingrediente values (3, 'Branza', '100 de bucati');
+insert into Ingrediente values (4, 'Crema de vanilie', '99 de bucati');
+insert into Ingrediente values (5, 'Faina', '8 bucati');
+insert into Ingrediente values (6, 'Ou', '13 bucati');
+insert into Ingrediente values (7, 'Frisca', '9 bucati');
+insert into Ingrediente values (8, 'Mere', '54 de bucati');
+insert into Ingrediente values (9, 'Ness', '32 de bucati');
+insert into Ingrediente values (10, 'Ovaz', '160 de bucati');
+insert into Ingrediente values (11, 'Lapte', '1000 de bucati');
+insert into Ingrediente values (12, 'Nuci', '20 de bucati');
+
+insert into Contin values (1, 1, '50g');
+insert into Contin values (1, 7, '35g');
+insert into Contin values (1, 9, '90g');
+insert into Contin values (7, 1, '100g');
+insert into Contin values (2, 2, '33g');
+insert into Contin values (3, 3, '50g');
+insert into Contin values (4, 4, '3g');
+insert into Contin values (5, 5, '1kg');
+insert into Contin values (6, 6, '50g');
+insert into Contin values (7, 9, '90g');
+insert into Contin values (7, 7, '200g');
+insert into Contin values (8, 7, '50g');
+insert into Contin values (11, 10, '25g');
+insert into Contin values (11, 5, '10g');
+
+insert into Comanda values (200, 1, 6, 10);
+insert into Comanda values (562, 2, 8, 15);
+insert into Comanda values (13, 1, 2, 20);
+insert into Comanda values (250, 3, 5, 11);
+insert into Comanda values (578, 4, 6, 14);
+insert into Comanda values (999, 7, 9, 21);
+insert into Comanda values (700, 10, 7, 29);
+insert into Comanda values (372, 2, 1, 34);
+insert into Comanda values (110, 9, 1, 45);
+insert into Comanda values (201, 4, 10, 3);
+insert into Comanda values (202, 3, 8, 9);
+insert into comanda values (207, 3, 10, 2);
+insert into comanda values (209, 16, 9, 83);
+insert into comanda values (210, 10, 4, 340);
+insert into comanda values (222, 14, 5, 29);
+insert into comanda values (204, 15, 5, 200);
+
+insert into Clienti values ('1', 'Pintilie', 'Dragos', 0722663451);
+insert into Clienti values ('2', 'Oprea', 'Sonia', 0745728039);
+insert into Clienti values ('3', 'Popa', 'Marian', 0733449999);
+insert into Clienti values ('4', 'Frunza', 'George', 0795836039);
+insert into Clienti values ('5', 'Mos', 'Craciun', 0399100100);
+insert into Clienti values ('6', 'Udrica', 'Marioara', 0735128039);
+insert into Clienti values ('7', 'Floricica', 'Mihaela', 0702030405);
+insert into Clienti values ('8', 'Barbu', 'Ionut', 0765555000);
+insert into Clienti values ('9', 'Popescu', 'Ovidiu', 0799665523);
+insert into Clienti values ('10', 'Mihai', 'Viteazu', 0732188444);
+insert into Clienti values ('11', 'Grigore', 'Bobel', 0732652444);
+
+insert into Factura values (200, 6, 1, '07/04/2021');
+insert into Factura values (201, 10, 2, '08/04/2021');
+insert into Factura values (207, 10, 3, '08/04/2021');
+insert into Factura values (202, 8, 4, '07/04/2021');
+insert into Factura values (562, 8, 4, '10/10/2021');
+insert into Factura values (250, 5, 5, '26/05/2021');
+insert into Factura values (13, 2, 6, '14/10/2021');
+insert into Factura values (578, 6, 7, '22/09/2021');
+insert into Factura values (999, 9, 8, '18/01/2021');
+insert into Factura values (700, 7, 9, '15/03/2021');
+insert into Factura values (372, 1, 10, '28/02/2021');
+insert into Factura values (110, 1, 11, '30/08/2021');
+insert into Factura values (209, 9, 8, '30/08/2021');
+insert into Factura values (210, 4, 8, '30/08/2021');
+insert into Factura values (222, 5, 8, '30/08/2021');
+insert into Factura values (204, 5, 1, '30/08/2021');
+
+

@@ -1,0 +1,101 @@
+create table Cofetarie 
+(
+	IdCofetarie int primary key,
+	Nume varchar(30) not null,
+	Locatie varchar(30) not null
+) 
+
+create table Angajati
+(
+	IdAngajat int primary key,
+	Nume varchar(30) not null,
+	Prenume varchar(30) not null,
+	Salariu int,
+	IdCofetarie int,
+	IdFunctie int
+)
+
+ALTER TABLE Angajati ADD CONSTRAINT
+FK_IdCofetarie FOREIGN KEY (IdCofetarie) REFERENCES Cofetarie(IdCofetarie) on delete cascade on update cascade
+
+ALTER TABLE Angajati ADD CONSTRAINT
+FK_IdFunctie FOREIGN KEY (IdFunctie) REFERENCES Functie(IdFunctie) on delete cascade on update cascade
+
+create table Functie 
+(
+	IdFunctie int primary key,
+	DenumireFunctie varchar(30),
+	Atributii varchar(100)
+)
+
+create table Produs
+(
+	IdProdus int primary key,
+	DenumireProdus varchar(30) not null,
+	TipProdus varchar(30) not null,
+	Pret int,
+	Gramaj varchar(30) not null,
+	IdCofetarie int
+)
+
+ALTER TABLE Produs ADD CONSTRAINT
+FK_IdCofetarie FOREIGN KEY (IdCofetarie) REFERENCES Cofetarie(IdCofetarie) on delete cascade on update cascade
+
+create table Ingrediente 
+(
+	IdIngredient int primary key,
+	DenumireIngredient varchar(30),
+	Stoc varchar(30)
+)
+
+create table Contin
+(
+	IdIngredient int,
+	IdProdus int,
+	Cantitate varchar(30)
+)
+
+ALTER TABLE Contin ADD CONSTRAINT
+FK_IdIngredient FOREIGN KEY (IdIngredient) REFERENCES Ingrediente(IdIngredient) on delete cascade on update cascade
+
+ALTER TABLE Contin ADD CONSTRAINT
+FK_IdProdus FOREIGN KEY (IdProdus) REFERENCES Produs(IdProdus) on delete cascade on update cascade
+
+create table Comanda 
+(
+	NrComanda int primary key,
+	IdProdus int,
+	IdClient int,
+	Cantitate int
+)
+
+ALTER TABLE Comanda ADD CONSTRAINT
+FK_IdProdus FOREIGN KEY (IdProdus) REFERENCES Produs(IdProdus) on delete cascade on update cascade
+
+ALTER TABLE Comanda ADD CONSTRAINT
+FK_IdClient FOREIGN KEY (IdClient) REFERENCES Clienti(IdClient) on delete cascade on update cascade
+
+create table Clienti
+(
+	IdClient int primary key,
+	Nume varchar(30),
+	Prenume varchar(30),
+	NumarTelefon varchar(11)
+)
+
+create table Factura
+(
+	NrComanda int,
+	IdClient int,
+	IdCofetarie int,
+	Data date
+)
+
+ALTER TABLE Factura ADD CONSTRAINT
+FK_NrComanda FOREIGN KEY (NrComanda) REFERENCES Comanda(NrComanda) on delete cascade on update cascade
+
+ALTER TABLE Factura ADD CONSTRAINT
+FK_IdClient FOREIGN KEY (IdClient) REFERENCES Clienti(IdClient) on delete cascade on update cascade
+
+ALTER TABLE Factura ADD CONSTRAINT
+FK_IdCofetarie FOREIGN KEY (IdCofetarie) REFERENCES Clienti(IdClient) on delete cascade on update cascade

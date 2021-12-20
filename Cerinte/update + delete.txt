@@ -1,0 +1,10 @@
+update Angajati set Salariu = 9000 where IdAngajat = 6;
+update Angajati set Salariu = 8000 where IdAngajat = 14;
+update Angajati set IdFunctie = 10 where IdAngajat = 9
+update Factura set Data = '07/04/2021' where NrComanda = 201
+update angajati set salariu = 210000 where idangajat = 15;
+
+delete from angajati where idangajat = 17;
+delete from factura where idcofetarie = 11;
+delete from produs where denumireprodus = 'Negrese';
+delete from ingrediente where idingredient = 13;

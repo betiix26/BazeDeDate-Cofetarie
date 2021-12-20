@@ -1,0 +1,68 @@
+--afiseaza denumirea produsului unde cantitatea > 21
+SELECT denumireprodus
+FROM produs
+WHERE idprodus = ANY (SELECT idprodus
+                       FROM comanda
+                       WHERE cantitate > 21);
+
+--afiseaza toate comenzile cu o cantitate mai mica
+--decat cantitatea maxima de torturi (id 7) comandata (21)
+SELECT nrcomanda, idclient, cantitate
+FROM comanda
+WHERE cantitate < ANY (SELECT cantitate
+                       FROM comanda
+                       WHERE idprodus = 7)
+order by cantitate asc
+
+--afiseaza numele produseleor care au gramajul de 50g       
+SELECT denumireprodus 
+FROM produs 
+where idprodus = any (SELECT idprodus
+					  FROM contin
+					  WHERE cantitate = '50g');
+
+--afiseaza salariile minime mai mari 
+--decat (salariile minime pana la idfunctie = 5)
+SELECT idfunctie, MIN(salariu)
+FROM angajati
+GROUP BY idfunctie
+HAVING MIN(salariu) > ALL (SELECT MIN(salariu)
+                           FROM angajati
+                           WHERE idfunctie < 5
+                           GROUP BY idfunctie)
+
+--numele angajaților cu salariul mai mare decât
+--al tuturor angajaților din cofetaria 2
+SELECT Nume, Prenume, idcofetarie, salariu
+FROM Angajati
+WHERE Salariu > ALL (SELECT Salariu FROM Angajati WHERE IdCofetarie = 2);
+
+--afisarea cofetariilor care prepara mai mult de 6 produse
+select distinct nume
+from cofetarie, produs
+where cofetarie.idcofetarie in (select  distinct produs.idcofetarie
+					  from produs
+					  group by produs.idcofetarie
+					  having count(*) >=6)
+
+--cauta comenzile facute si id-urile produselor din comenzi
+--apoi afiseaza tot tabelul produs in care se afla aceste comenzi
+--impreuna cu id-urile produselor din comenzi, denumirea produselor etc
+SELECT * FROM produs
+WHERE idprodus IN (SELECT idprodus FROM comanda);
+
+--numele clientilor care au comandat produse
+--cu pretul de peste 30 de lei
+SELECT *
+FROM clienti
+WHERE EXISTS (SELECT idprodus
+              FROM produs
+              WHERE produs.idprodus = clienti.idclient AND pret > 30)
+
+--id-urile cofetariilor unde exista livratori
+--si numele livratorilor
+SELECT angajati.nume, prenume, idcofetarie
+FROM angajati
+WHERE EXISTS (SELECT idfunctie
+              FROM functie
+              WHERE angajati.idfunctie = functie.idfunctie AND idfunctie = 4)

@@ -1,0 +1,39 @@
+--o vedere in care ni se afiseaza denumirea produselor
+--care au pretul mai mare decat pretul mediu
+CREATE VIEW produse_peste_pretul_mediu AS
+SELECT denumireprodus, pret
+FROM produs
+WHERE pret > (SELECT AVG(pret) FROM produs);
+
+--venitul fiecarei comenzi(suma) (pret x cantitate = suma platita)
+create view venit as select produs.DenumireProdus produs, pret pret, comanda.Cantitate cantitate, (produs.Pret * comanda.Cantitate) venit, factura.Data Data     
+                     from produs, comanda, factura
+					 where produs.IdProdus = comanda.IdProdus and comanda.NrComanda = factura.NrComanda	 
+
+--vizualizam cofetariile care au locatia in craiova si filiasi
+create view locatii as 
+select * from cofetarie
+where locatie in ('Craiova', 'Filiasi')
+
+--vedere in care se afiseaza angajatii cu salariul < 3000
+--eligibili pt marirea de salariu
+CREATE VIEW angajati_eligibili_marire_salariu(idangajat,nume, prenume ) 
+AS ( SELECT idangajat, nume, prenume
+     DISTINCT FROM angajati
+     WHERE idangajat NOT IN (SELECT idangajat
+				             FROM angajati
+				             WHERE salariu > 3000)
+)
+
+--vizualizam angajatii care au acelasi nume de familie
+--si numaram la fiecare
+CREATE VIEW nrangajati AS SELECT nume, Count(*) as nrangajati 
+                          FROM  angajati 
+                          group by nume
+                          order by nrangajati desc
+
+
+
+
+
+

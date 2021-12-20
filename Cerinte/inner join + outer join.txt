@@ -1,0 +1,59 @@
+--afisarea produselor care contin ingredientele cacao sau frisca - 1 si 7
+select distinct produs.idprodus, produs.denumireprodus
+from contin inner join produs on produs.idprodus = contin.idprodus
+where contin.idingredient = 7 or contin.idingredient = 1
+
+--afisarea nr comenzii, numele clientilor,
+--data la care s-a efectuat comanda
+SELECT factura.nrcomanda, clienti.nume, clienti.prenume, factura.data
+FROM factura
+INNER JOIN clienti ON factura.idclient = clienti.idclient;
+
+--afisam numele clientilor si nr comenzii fiecaruia
+--chiar daca unii clienti nu au dat inca o comanda
+SELECT clienti.nume, clienti.prenume, factura.nrcomanda
+FROM clienti
+LEFT JOIN factura ON clienti.idclient = factura.idclient
+ORDER BY factura.nrcomanda
+
+--numaram cati angajati lucreaza la fiecare cofetarie
+--si grupam dupa numele cofetariei
+SELECT cofetarie.nume, COUNT(angajati.idcofetarie) AS nr_angajati FROM angajati
+LEFT JOIN cofetarie ON angajati.idcofetarie = cofetarie.idcofetarie
+GROUP BY cofetarie.nume
+
+--toate produsele de la toate cofetariile, precum si pretul fiecaruia
+--ordonat crescator (apar si cele care nu au pret inca)
+SELECT produs.denumireprodus, produs.pret, produs.idcofetarie
+FROM produs
+FULL OUTER JOIN cofetarie ON produs.idprodus=cofetarie.idcofetarie
+ORDER BY produs.denumireprodus asc
+
+--numele tuturor angajatilor si functiile lor, 
+--chiar daca unii angajati nu au momentan functie
+SELECT angajati.nume, functie.idfunctie
+FROM angajati
+FULL OUTER JOIN functie ON angajati.idangajat=functie.idfunctie
+ORDER BY angajati.nume;
+
+--afisam clientii si nr comenzilor fiecaruia
+--ordonam crescator
+select clienti.idclient, clienti.nume, comanda.nrcomanda, cantitate
+from clienti
+inner join comanda ON clienti.idclient = comanda.idclient order by comanda.nrcomanda asc
+
+--afisarea clientilor care au comandat fursecuri cu ovaz
+select distinct clienti.idclient, clienti.nume
+from clienti inner join comanda on clienti.idclient = comanda.idclient
+where comanda.idprodus = 10
+
+--afisarea produselor care contin ingredientele faina sau nuci
+select distinct produs.idprodus, produs.denumireprodus
+from contin inner join produs on produs.idprodus = contin.idprodus
+where contin.idingredient = 5 or contin.idingredient = 12
+
+--numele angajatilor care lucreaza la fiecare cofetarie
+--chiar daca unelele cofetarii nu au inca angajati
+SELECT a.idangajat, a.nume, c.idcofetarie
+FROM angajati a full outer join cofetarie c on a.idcofetarie = c.idcofetarie
+order by idcofetarie
